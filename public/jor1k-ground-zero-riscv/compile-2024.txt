@@ -1,0 +1,8 @@
+clang -Os --target=wasm32 -fno-delete-null-pointer-checks -c or1k.c -o or1k.o
+clang -Os --target=wasm32 -fno-delete-null-pointer-checks -c riscv.c -o riscv.o
+wasm-ld --global-base=0 --no-entry --strip-all --import-memory --export-all --allow-undefined or1k.o -o or1k.wasm
+wasm-ld --global-base=0 --no-entry --strip-all --import-memory --export-all --allow-undefined riscv.o -o riscv.wasm
+
+
+clang -Os --target=wasm32 -fno-delete-null-pointer-checks -c or1k.c --global-base=0 --no-entry --strip-all --import-memory --export-all --allow-undefined -o riscv.wasm
+
